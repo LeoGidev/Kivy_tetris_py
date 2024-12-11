@@ -8,3 +8,4 @@ import random
 # Configuración del tablero
 GRID_SIZE = 20  # Tamaño de cada celda
 BOARD_WIDTH = 10
+BOARD_HEIGHT = 20
