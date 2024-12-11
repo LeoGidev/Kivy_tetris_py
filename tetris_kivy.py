@@ -22,3 +22,5 @@ SHAPES = {
 }
 
 class TetrisGame(Widget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
