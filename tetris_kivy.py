@@ -9,3 +9,6 @@ import random
 GRID_SIZE = 20  # Tamaño de cada celda
 BOARD_WIDTH = 10
 BOARD_HEIGHT = 20
+
+# Formas de las piezas (Tetrominós)
+SHAPES = {
