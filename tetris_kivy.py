@@ -28,3 +28,11 @@ class TetrisGame(Widget):
         self.current_piece = None
         self.current_pos = [0, 4]  # Inicialmente arriba y centrado
         self.game_over = False
+
+        # Eventos de teclado
+        Window.bind(on_key_down=self.on_key_down)
+
+        # Actualización periódica
+        Clock.schedule_interval(self.update, 0.5)  # Cada 0.5 segundos
+
+        self.start_new_piece()
