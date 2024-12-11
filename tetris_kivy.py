@@ -41,3 +41,7 @@ class TetrisGame(Widget):
         """Generar una nueva pieza"""
         self.current_piece = random.choice(list(SHAPES.values()))
         self.current_pos = [0, 4]
+
+        if self.check_collision(self.current_piece, self.current_pos):
+            self.game_over = True
+            print("Game Over!")
