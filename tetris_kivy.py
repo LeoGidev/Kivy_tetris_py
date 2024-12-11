@@ -36,3 +36,6 @@ class TetrisGame(Widget):
         Clock.schedule_interval(self.update, 0.5)  # Cada 0.5 segundos
 
         self.start_new_piece()
+
+    def start_new_piece(self):
+        """Generar una nueva pieza"""
