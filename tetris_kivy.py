@@ -26,3 +26,5 @@ class TetrisGame(Widget):
         super().__init__(**kwargs)
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
+        self.current_pos = [0, 4]  # Inicialmente arriba y centrado
+        self.game_over = False
