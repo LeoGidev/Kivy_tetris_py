@@ -12,3 +12,4 @@ BOARD_HEIGHT = 20
 
 # Formas de las piezas (Tetrominós)
 SHAPES = {
+    'I': [[1, 1, 1, 1]],
