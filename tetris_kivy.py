@@ -45,3 +45,16 @@ class TetrisGame(Widget):
         if self.check_collision(self.current_piece, self.current_pos):
             self.game_over = True
             print("Game Over!")
+
+    def check_collision(self, piece, pos):
+        """Verifica si una pieza colisiona con los bordes o con otras piezas"""
+        for y, row in enumerate(piece):
+            for x, cell in enumerate(row):
+                if cell:
+                    new_x = pos[1] + x
+                    new_y = pos[0] + y
+                    if (new_x < 0 or new_x >= BOARD_WIDTH or
+                        new_y >= BOARD_HEIGHT or
+                        (new_y >= 0 and self.board[new_y][new_x])):
+                        return True
+        return False
