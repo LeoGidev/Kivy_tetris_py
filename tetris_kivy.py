@@ -24,3 +24,5 @@ SHAPES = {
 class TetrisGame(Widget):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
+        self.current_piece = None
