@@ -39,3 +39,5 @@ class TetrisGame(Widget):
 
     def start_new_piece(self):
         """Generar una nueva pieza"""
+        self.current_piece = random.choice(list(SHAPES.values()))
+        self.current_pos = [0, 4]
