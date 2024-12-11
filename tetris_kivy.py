@@ -4,3 +4,6 @@ from kivy.graphics import Rectangle, Color
 from kivy.clock import Clock
 from kivy.core.window import Window
 import random
+
+# Configuración del tablero
+GRID_SIZE = 20  # Tamaño de cada celda
