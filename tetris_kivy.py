@@ -147,6 +147,10 @@ class TetrisGame(Widget):
             # Dibuja la pieza actual
             for y, row in enumerate(self.current_piece):
                 for x, cell in enumerate(row):
+                    if cell:
+                        Color(1, 0, 0)
+
+                        
 class TetrisApp(App):
     def build(self):
         return TetrisGame()
