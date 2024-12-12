@@ -76,9 +76,7 @@ class TetrisGame(Widget):
         """Elimina filas completas del tablero y actualiza el nivel"""
         cleared = 0
         new_board = [row for row in self.board if any(cell == 0 for cell in row)]
-        while len(new_board) < BOARD_HEIGHT:
-            new_board.insert(0, [0 for _ in range(BOARD_WIDTH)])
-        self.board = new_board
+        cleared = BOARD_HEIGHT - len(new_board)
 
     def move_piece(self, dx, dy):
         """Mueve la pieza actual"""
