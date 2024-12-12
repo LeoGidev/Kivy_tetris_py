@@ -149,8 +149,11 @@ class TetrisGame(Widget):
                 for x, cell in enumerate(row):
                     if cell:
                         Color(1, 0, 0)
+                        Rectangle(pos=((self.current_pos[1] + x) * GRID_SIZE,
+                                       (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
+                                  size=(GRID_SIZE, GRID_SIZE))
 
-                        
+
 class TetrisApp(App):
     def build(self):
         return TetrisGame()
