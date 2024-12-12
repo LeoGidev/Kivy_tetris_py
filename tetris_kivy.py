@@ -157,6 +157,8 @@ class TetrisGame(Widget):
             Color(1, 1, 1)
             self.canvas.add(Rectangle(pos=(0, BOARD_HEIGHT * GRID_SIZE), size=(200, 30)))
             self.canvas.add(Color(0, 0, 0))
+            self.canvas.add(Rectangle(pos=(5, BOARD_HEIGHT * GRID_SIZE + 5), size=(190, 20)))
+
 
 
 class TetrisApp(App):
