@@ -87,6 +87,8 @@ class TetrisGame(Widget):
             self.update_level()
     def update_level(self):
         """Aumenta el nivel y ajusta la velocidad"""
+        new_level = self.lines_cleared // 10 + 1  # Subir nivel cada 10 líneas
+        if new_level > self.level:
 
 
 
