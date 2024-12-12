@@ -26,14 +26,18 @@ class TetrisGame(Widget):
         super().__init__(**kwargs)
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
-        self.current_pos = [0, 4]  # Inicialmente arriba y centrado
+        self.current_pos = [0, 4]
         self.game_over = False
+
+        self.lines_cleared = 0  # Líneas eliminadas
+        self.level = 1  # Nivel inicial
+        self.speed = 0.5  # Velocidad inicial (segundos entre actualizaciones)
 
         # Eventos de teclado
         Window.bind(on_key_down=self.on_key_down)
 
         # Actualización periódica
-        Clock.schedule_interval(self.update, 0.5)  # Cada 0.5 segundos
+        Clock.schedule_interval(self.update, self.speed)
 
         self.start_new_piece()
 
