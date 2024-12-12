@@ -108,18 +108,15 @@ class TetrisGame(Widget):
         if not self.check_collision(new_piece, self.current_pos):
             self.current_piece = new_piece
 
-    def on_key_down(self, instance, key, *args):
-        """Control de teclado"""
-        if self.game_over:
-            return
-        if key == Window.keycodes['left']:  # Flecha izquierda
-            self.move_piece(-1, 0)
-        elif key == Window.keycodes['right']:  # Flecha derecha
-            self.move_piece(1, 0)
-        elif key == Window.keycodes['down']:  # Flecha abajo
-            self.move_piece(0, 1)
-        elif key == Window.keycodes['up']:  # Flecha arriba
-            self.rotate_piece()
+    def on_key_down(self, window, key, scancode, codepoint, modifiers):
+        if key == 276:  # Flecha izquierda
+            self.move_left()
+        elif key == 275:  # Flecha derecha
+            self.move_right()
+        elif key == 273:  # Flecha arriba
+            self.rotate()
+        elif key == 274:  # Flecha abajo
+            self.move_down()
 
     def update(self, dt):
         """Actualización periódica del juego"""
