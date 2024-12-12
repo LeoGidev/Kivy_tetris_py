@@ -3,6 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.graphics import Rectangle, Color
 from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.uix.label import Label
 import random
 
 # Configuración del tablero
@@ -74,7 +75,6 @@ class TetrisGame(Widget):
 
     def clear_lines(self):
         """Elimina filas completas del tablero y actualiza el nivel"""
-        cleared = 0
         new_board = [row for row in self.board if any(cell == 0 for cell in row)]
         cleared = BOARD_HEIGHT - len(new_board)
         while len(new_board) < BOARD_HEIGHT:
@@ -96,7 +96,6 @@ class TetrisGame(Widget):
             Clock.schedule_interval(self.update, self.speed)
             print(f"Nivel: {self.level}, Velocidad: {self.speed:.2f}s")
 
-
     def move_piece(self, dx, dy):
         """Mueve la pieza actual"""
         new_pos = [self.current_pos[0] + dy, self.current_pos[1] + dx]
@@ -113,13 +112,13 @@ class TetrisGame(Widget):
         """Control de teclado"""
         if self.game_over:
             return
-        if key == 276:  # Flecha izquierda
+        if key == Window.keycodes['left']:  # Flecha izquierda
             self.move_piece(-1, 0)
-        elif key == 275:  # Flecha derecha
+        elif key == Window.keycodes['right']:  # Flecha derecha
             self.move_piece(1, 0)
-        elif key == 274:  # Flecha abajo
+        elif key == Window.keycodes['down']:  # Flecha abajo
             self.move_piece(0, 1)
-        elif key == 273:  # Flecha arriba
+        elif key == Window.keycodes['up']:  # Flecha arriba
             self.rotate_piece()
 
     def update(self, dt):
@@ -133,7 +132,7 @@ class TetrisGame(Widget):
         self.draw_board()
 
     def draw_board(self):
-        """Dibuja el tablero y la pieza actual, con el nivel mostrado"""
+        """Dibuja el tablero y la pieza actual"""
         self.canvas.clear()
         with self.canvas:
             # Dibuja las piezas fijas en el tablero
@@ -152,16 +151,6 @@ class TetrisGame(Widget):
                         Rectangle(pos=((self.current_pos[1] + x) * GRID_SIZE,
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
-
-            # Mostrar nivel
-            Color(1, 1, 1)
-            self.canvas.add(Rectangle(pos=(0, BOARD_HEIGHT * GRID_SIZE), size=(200, 30)))
-            self.canvas.add(Color(0, 0, 0))
-            self.canvas.add(Rectangle(pos=(5, BOARD_HEIGHT * GRID_SIZE + 5), size=(190, 20)))
-
-            self.canvas.add(Color(1, 1, 1))
-            self.add_widget(Label(text=f"Nivel: {self.level}", pos=(20, BOARD_HEIGHT * GRID_SIZE + 10)))
-
 
 
 class TetrisApp(App):
