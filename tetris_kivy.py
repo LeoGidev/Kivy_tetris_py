@@ -144,6 +144,9 @@ class TetrisGame(Widget):
                         Rectangle(pos=(x * GRID_SIZE, (BOARD_HEIGHT - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
 
+            # Dibuja la pieza actual
+            for y, row in enumerate(self.current_piece):
+                for x, cell in enumerate(row):
 class TetrisApp(App):
     def build(self):
         return TetrisGame()
