@@ -153,6 +153,11 @@ class TetrisGame(Widget):
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
 
+            # Mostrar nivel
+            Color(1, 1, 1)
+            self.canvas.add(Rectangle(pos=(0, BOARD_HEIGHT * GRID_SIZE), size=(200, 30)))
+            self.canvas.add(Color(0, 0, 0))
+
 
 class TetrisApp(App):
     def build(self):
