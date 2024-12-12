@@ -85,6 +85,8 @@ class TetrisGame(Widget):
         if cleared > 0:
             print(f"Líneas eliminadas: {self.lines_cleared}")
             self.update_level()
+    def update_level(self):
+        """Aumenta el nivel y ajusta la velocidad"""
 
 
 
