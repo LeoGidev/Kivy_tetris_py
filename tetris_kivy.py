@@ -132,7 +132,11 @@ class TetrisGame(Widget):
             self.place_piece()
         self.draw_board()
 
-    
+    def draw_board(self):
+        """Dibuja el tablero y la pieza actual, con el nivel mostrado"""
+        self.canvas.clear()
+        with self.canvas:
+            
 class TetrisApp(App):
     def build(self):
         return TetrisGame()
