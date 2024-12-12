@@ -159,6 +159,9 @@ class TetrisGame(Widget):
             self.canvas.add(Color(0, 0, 0))
             self.canvas.add(Rectangle(pos=(5, BOARD_HEIGHT * GRID_SIZE + 5), size=(190, 20)))
 
+            self.canvas.add(Color(1, 1, 1))
+            self.add_widget(Label(text=f"Nivel: {self.level}", pos=(20, BOARD_HEIGHT * GRID_SIZE + 10)))
+
 
 
 class TetrisApp(App):
