@@ -93,6 +93,8 @@ class TetrisGame(Widget):
             self.level = new_level
             self.speed = max(0.1, self.speed - 0.05)  # Reducir velocidad (límites)
             Clock.unschedule(self.update)
+            Clock.schedule_interval(self.update, self.speed)
+            print(f"Nivel: {self.level}, Velocidad: {self.speed:.2f}s")
 
 
     def move_piece(self, dx, dy):
