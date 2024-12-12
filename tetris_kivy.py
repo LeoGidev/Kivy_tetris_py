@@ -73,7 +73,8 @@ class TetrisGame(Widget):
         self.start_new_piece()
 
     def clear_lines(self):
-        """Elimina filas completas del tablero"""
+        """Elimina filas completas del tablero y actualiza el nivel"""
+        cleared = 0
         new_board = [row for row in self.board if any(cell == 0 for cell in row)]
         while len(new_board) < BOARD_HEIGHT:
             new_board.insert(0, [0 for _ in range(BOARD_WIDTH)])
