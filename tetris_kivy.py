@@ -81,6 +81,9 @@ class TetrisGame(Widget):
             new_board.insert(0, [0 for _ in range(BOARD_WIDTH)])
         self.board = new_board
 
+        self.lines_cleared += cleared
+        if cleared > 0:
+
 
     def move_piece(self, dx, dy):
         """Mueve la pieza actual"""
