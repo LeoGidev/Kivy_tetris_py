@@ -85,12 +85,14 @@ class TetrisGame(Widget):
         if cleared > 0:
             print(f"Líneas eliminadas: {self.lines_cleared}")
             self.update_level()
-            
+
     def update_level(self):
         """Aumenta el nivel y ajusta la velocidad"""
         new_level = self.lines_cleared // 10 + 1  # Subir nivel cada 10 líneas
         if new_level > self.level:
             self.level = new_level
+            self.speed = max(0.1, self.speed - 0.05)  # Reducir velocidad (límites)
+            Clock.unschedule(self.update)
 
 
     def move_piece(self, dx, dy):
