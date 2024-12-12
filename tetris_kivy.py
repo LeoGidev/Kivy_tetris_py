@@ -132,13 +132,17 @@ class TetrisGame(Widget):
             self.place_piece()
         self.draw_board()
 
-     def draw_board(self):
+    def draw_board(self):
         """Dibuja el tablero y la pieza actual, con el nivel mostrado"""
         self.canvas.clear()
         with self.canvas:
             # Dibuja las piezas fijas en el tablero
             for y, row in enumerate(self.board):
                 for x, cell in enumerate(row):
+                    if cell:
+                        Color(0, 1, 0)
+                        Rectangle(pos=(x * GRID_SIZE, (BOARD_HEIGHT - y - 1) * GRID_SIZE),
+                                  size=(GRID_SIZE, GRID_SIZE))
 
 class TetrisApp(App):
     def build(self):
