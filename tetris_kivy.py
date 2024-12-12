@@ -117,6 +117,22 @@ class TetrisGame(Widget):
             self.rotate()
         elif key == 274:  # Flecha abajo
             self.move_down()
+    def move_left(self):
+        """Mueve la pieza a la izquierda."""
+        self.move_piece(-1, 0)
+
+    def move_right(self):
+        """Mueve la pieza a la derecha."""
+        self.move_piece(1, 0)
+
+    def move_down(self):
+        """Mueve la pieza hacia abajo más rápido."""
+        self.move_piece(0, 1)
+
+    def rotate(self):
+        """Rota la pieza actual."""
+        self.rotate_piece()
+
 
     def update(self, dt):
         """Actualización periódica del juego"""
