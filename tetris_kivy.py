@@ -83,6 +83,9 @@ class TetrisGame(Widget):
 
         self.lines_cleared += cleared
         if cleared > 0:
+            print(f"Líneas eliminadas: {self.lines_cleared}")
+            self.update_level()
+
 
 
     def move_piece(self, dx, dy):
