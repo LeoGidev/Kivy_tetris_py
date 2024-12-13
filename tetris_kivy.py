@@ -205,10 +205,12 @@ class TetrisApp(App):
         tetris_game = TetrisGame(score_label, level_label)
         game_area.add_widget(tetris_game)
 
+        # Agregar paneles al diseño principal
         root.add_widget(info_panel)
         root.add_widget(game_area)
 
         return root
+
 
 if __name__ == '__main__':
     TetrisApp().run()
