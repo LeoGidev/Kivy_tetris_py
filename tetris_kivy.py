@@ -164,6 +164,9 @@ class TetrisGame(Widget):
                         Rectangle(pos=((self.current_pos[1] + x) * GRID_SIZE,
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
+            # Dibuja la siguiente pieza en el área de vista previa
+            offset_x, offset_y = BOARD_WIDTH * GRID_SIZE + 20, BOARD_HEIGHT * GRID_SIZE - 100
+            for y, row in enumerate(self.next_piece):
 
 
 class TetrisApp(App):
