@@ -169,6 +169,7 @@ class TetrisGame(Widget):
             for y, row in enumerate(self.next_piece):
                 for x, cell in enumerate(row):
                     if cell:
+                        Color(0, 0, 1)
 
 
 class TetrisApp(App):
