@@ -187,7 +187,7 @@ class TetrisApp(App):
         # Panel de información con fondo colorido
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 0.5})
         with info_panel.canvas.before:
-            Color(1, 1, 1, 1)
+            Color(1, 1, 1, 0)
             Rectangle(pos=info_panel.pos, size=info_panel.size)
 
         score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1), pos_hint={"right": 1})
@@ -199,7 +199,7 @@ class TetrisApp(App):
         # Área del juego con fondo diferente
         game_area = BoxLayout(size_hint=(0.7, 1))
         with game_area.canvas.before:
-            Color(0.1, 0.1, 0.1, 1)
+            Color(0.1, 0.1, 0.1, 0)
             Rectangle(pos=game_area.pos, size=game_area.size)
 
         tetris_game = TetrisGame(score_label, level_label)
