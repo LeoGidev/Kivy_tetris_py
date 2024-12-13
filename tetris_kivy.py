@@ -161,6 +161,10 @@ class TetrisGame(Widget):
         """Dibuja el tablero, la pieza actual y la siguiente pieza"""
         self.canvas.clear()
         with self.canvas:
+            # Fondo del área del juego
+            Color(0.1, 0.1, 0.1)
+            Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
+
             # Dibuja las piezas fijas en el tablero
             for y, row in enumerate(self.board):
                 for x, cell in enumerate(row):
@@ -191,21 +195,11 @@ class TetrisApp(App):
     def build(self):
         root = BoxLayout(orientation='horizontal')
 
-        # Panel de información
+        # Panel de información con fondo colorido
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1))
+        with info_panel.canvas:
+            Color(0.2, 0.2, 0.5, 1)
+            Rectangle(pos=info_panel.pos, size=info_panel.size)
+
         score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1))
         level_label = Label(text="Level: 1", font_size=20, size_hint=(1, 0.1))
-        next_piece_label = Label(text="Next Piece:", font_size=20, size_hint=(1, 0.1))
-        info_panel.add_widget(score_label)
-        info_panel.add_widget(level_label)
-        info_panel.add_widget(next_piece_label)
-
-        # Juego
-        game = TetrisGame(score_label, next_piece_label, level_label)
-
-        root.add_widget(game)
-        root.add_widget(info_panel)
-        return root
-
-if __name__ == '__main__':
-    TetrisApp().run()
