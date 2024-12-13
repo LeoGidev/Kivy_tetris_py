@@ -25,7 +25,7 @@ SHAPES = {
 }
 
 class TetrisGame(Widget):
-    def __init__(self, **kwargs):
+    def __init__(self, score_label, next_piece_label, **kwargs):
         super().__init__(**kwargs)
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
@@ -38,12 +38,9 @@ class TetrisGame(Widget):
         self.speed = 0.5  # Velocidad inicial (segundos entre actualizaciones)
         self.score = 0  # Sistema de puntuación
 
-        # Etiquetas de información
-        self.score_label = Label(text=f"Score: {self.score}", size_hint=(None, None), size=(100, 50))
-        self.add_widget(self.score_label)
-
-        self.next_piece_label = Label(text="Next Piece:", size_hint=(None, None), size=(100, 50), pos=(200, 400))
-        self.add_widget(self.next_piece_label)
+        # Referencias a las etiquetas externas
+        self.score_label = score_label
+        self.next_piece_label = next_piece_label
 
         # Eventos de teclado
         Window.bind(on_key_down=self.on_key_down)
@@ -188,12 +185,22 @@ class TetrisGame(Widget):
                         Rectangle(pos=(offset_x + x * GRID_SIZE, offset_y - y * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
 
-
 class TetrisApp(App):
     def build(self):
         root = BoxLayout(orientation='horizontal')
-        game = TetrisGame()
+
+        # Panel de información
+        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1))
+        score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1))
+        next_piece_label = Label(text="Next Piece:", font_size=20, size_hint=(1, 0.1))
+        info_panel.add_widget(score_label)
+        info_panel.add_widget(next_piece_label)
+
+        # Juego
+        game = TetrisGame(score_label, next_piece_label)
+
         root.add_widget(game)
+        root.add_widget(info_panel)
         return root
 
 if __name__ == '__main__':
