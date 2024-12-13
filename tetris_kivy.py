@@ -185,12 +185,12 @@ class TetrisApp(App):
         root = BoxLayout(orientation='vertical')
 
         # Panel de información con fondo colorido
-        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1))
+        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 0.5})
         with info_panel.canvas.before:
             Color(1, 1, 1, 1)
             Rectangle(pos=info_panel.pos, size=info_panel.size)
 
-        score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1))
+        score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1)pos_hint={"right": 0.5})
         level_label = Label(text="Level: 1", font_size=20, size_hint=(1, 0.1))
 
         info_panel.add_widget(score_label)
