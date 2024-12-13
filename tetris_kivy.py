@@ -182,7 +182,7 @@ class TetrisGame(Widget):
 
 class TetrisApp(App):
     def build(self):
-        root = BoxLayout(orientation='horizontal')
+        root = BoxLayout(orientation='vertical')
 
         # Panel de información con fondo colorido
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1))
