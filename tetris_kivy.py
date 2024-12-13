@@ -6,6 +6,7 @@ from kivy.core.window import Window
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 import random
+from kivy.uix.floatlayout import FloatLayout 
 
 # Configuración del tablero
 GRID_SIZE = 20  # Tamaño de cada celda
