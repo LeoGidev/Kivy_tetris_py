@@ -74,7 +74,7 @@ class TetrisGame(Widget):
         self.start_new_piece()
 
     def clear_lines(self):
-        """Elimina filas completas del tablero y actualiza el nivel"""
+        """Elimina filas completas del tablero y actualiza el nivel y la puntuación"""
         new_board = [row for row in self.board if any(cell == 0 for cell in row)]
         cleared = BOARD_HEIGHT - len(new_board)
         while len(new_board) < BOARD_HEIGHT:
@@ -83,9 +83,7 @@ class TetrisGame(Widget):
 
         self.lines_cleared += cleared
         if cleared > 0:
-            print(f"Líneas eliminadas: {self.lines_cleared}")
-            self.update_level()
-        if cleared > 0:
+            self.score += (cleared ** 2) * 100  # Incrementar puntuación según las líneas eliminadas
 
     def update_level(self):
         """Aumenta el nivel y ajusta la velocidad"""
