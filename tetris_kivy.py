@@ -4,6 +4,8 @@ from kivy.graphics import Rectangle, Color
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.label import Label
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 import random
 
 # Configuración del tablero
@@ -28,11 +30,20 @@ class TetrisGame(Widget):
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
         self.current_pos = [0, 4]
+        self.next_piece = random.choice(list(SHAPES.values()))
         self.game_over = False
 
         self.lines_cleared = 0  # Líneas eliminadas
         self.level = 1  # Nivel inicial
         self.speed = 0.5  # Velocidad inicial (segundos entre actualizaciones)
+        self.score = 0  # Sistema de puntuación
+
+        # Etiquetas de información
+        self.score_label = Label(text=f"Score: {self.score}", size_hint=(None, None), size=(100, 50))
+        self.add_widget(self.score_label)
+
+        self.next_piece_label = Label(text="Next Piece:", size_hint=(None, None), size=(100, 50), pos=(200, 400))
+        self.add_widget(self.next_piece_label)
 
         # Eventos de teclado
         Window.bind(on_key_down=self.on_key_down)
@@ -44,7 +55,8 @@ class TetrisGame(Widget):
 
     def start_new_piece(self):
         """Generar una nueva pieza"""
-        self.current_piece = random.choice(list(SHAPES.values()))
+        self.current_piece = self.next_piece
+        self.next_piece = random.choice(list(SHAPES.values()))
         self.current_pos = [0, 4]
 
         if self.check_collision(self.current_piece, self.current_pos):
@@ -119,6 +131,7 @@ class TetrisGame(Widget):
             self.rotate()
         elif key == 274:  # Flecha abajo
             self.move_down()
+
     def move_left(self):
         """Mueve la pieza a la izquierda."""
         self.move_piece(-1, 0)
@@ -135,7 +148,6 @@ class TetrisGame(Widget):
         """Rota la pieza actual."""
         self.rotate_piece()
 
-
     def update(self, dt):
         """Actualización periódica del juego"""
         if self.game_over:
@@ -147,7 +159,7 @@ class TetrisGame(Widget):
         self.draw_board()
 
     def draw_board(self):
-        """Dibuja el tablero y la pieza actual"""
+        """Dibuja el tablero, la pieza actual y la siguiente pieza"""
         self.canvas.clear()
         with self.canvas:
             # Dibuja las piezas fijas en el tablero
@@ -166,6 +178,7 @@ class TetrisGame(Widget):
                         Rectangle(pos=((self.current_pos[1] + x) * GRID_SIZE,
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
+
             # Dibuja la siguiente pieza en el área de vista previa
             offset_x, offset_y = BOARD_WIDTH * GRID_SIZE + 20, BOARD_HEIGHT * GRID_SIZE - 100
             for y, row in enumerate(self.next_piece):
@@ -178,7 +191,11 @@ class TetrisGame(Widget):
 
 class TetrisApp(App):
     def build(self):
-        return TetrisGame()
+        root = BoxLayout(orientation='horizontal')
+        game = TetrisGame()
+        root.add_widget(game)
+        return root
 
 if __name__ == '__main__':
     TetrisApp().run()
+
