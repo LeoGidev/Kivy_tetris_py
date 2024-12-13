@@ -168,6 +168,7 @@ class TetrisGame(Widget):
             offset_x, offset_y = BOARD_WIDTH * GRID_SIZE + 20, BOARD_HEIGHT * GRID_SIZE - 100
             for y, row in enumerate(self.next_piece):
                 for x, cell in enumerate(row):
+                    if cell:
 
 
 class TetrisApp(App):
