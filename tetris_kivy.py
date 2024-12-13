@@ -84,6 +84,9 @@ class TetrisGame(Widget):
         self.lines_cleared += cleared
         if cleared > 0:
             self.score += (cleared ** 2) * 100  # Incrementar puntuación según las líneas eliminadas
+            self.score_label.text = f"Score: {self.score}"
+            print(f"Líneas eliminadas: {self.lines_cleared}, Score: {self.score}")
+            self.update_level()
 
     def update_level(self):
         """Aumenta el nivel y ajusta la velocidad"""
