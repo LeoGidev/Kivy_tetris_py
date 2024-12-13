@@ -198,9 +198,9 @@ class TetrisApp(App):
 
         # Área del juego con fondo diferente
         game_area = BoxLayout(size_hint=(0.7, 1))
-        with game_area.canvas.before:
-            Color(0.1, 0.1, 0.1, 0)
-            Rectangle(pos=game_area.pos, size=game_area.size)
+        #with game_area.canvas.before:
+        #    Color(0.1, 0.1, 0.1, 0)
+        #    Rectangle(pos=game_area.pos, size=game_area.size)
 
         tetris_game = TetrisGame(score_label, level_label)
         game_area.add_widget(tetris_game)
