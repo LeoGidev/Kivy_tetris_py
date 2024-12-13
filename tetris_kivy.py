@@ -5,7 +5,6 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.gridlayout import GridLayout
 import random
 
 # Configuración del tablero
@@ -25,7 +24,7 @@ SHAPES = {
 }
 
 class TetrisGame(Widget):
-    def __init__(self, score_label, next_piece_label, level_label, **kwargs):
+    def __init__(self, score_label, level_label, **kwargs):
         super().__init__(**kwargs)
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
@@ -40,7 +39,6 @@ class TetrisGame(Widget):
 
         # Referencias a las etiquetas externas
         self.score_label = score_label
-        self.next_piece_label = next_piece_label
         self.level_label = level_label
 
         # Eventos de teclado
@@ -182,24 +180,29 @@ class TetrisGame(Widget):
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
 
-            # Dibuja la siguiente pieza en el área de vista previa
-            offset_x, offset_y = BOARD_WIDTH * GRID_SIZE + 20, BOARD_HEIGHT * GRID_SIZE - 100
-            for y, row in enumerate(self.next_piece):
-                for x, cell in enumerate(row):
-                    if cell:
-                        Color(0, 0, 1)
-                        Rectangle(pos=(offset_x + x * GRID_SIZE, offset_y - y * GRID_SIZE),
-                                  size=(GRID_SIZE, GRID_SIZE))
-
 class TetrisApp(App):
     def build(self):
         root = BoxLayout(orientation='horizontal')
 
         # Panel de información con fondo colorido
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1))
-        with info_panel.canvas:
+        with info_panel.canvas.before:
             Color(0.2, 0.2, 0.5, 1)
             Rectangle(pos=info_panel.pos, size=info_panel.size)
 
         score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1))
         level_label = Label(text="Level: 1", font_size=20, size_hint=(1, 0.1))
+
+        info_panel.add_widget(score_label)
+        info_panel.add_widget(level_label)
+
+        # Área del juego con fondo diferente
+        game_area = BoxLayout(size_hint=(0.7, 1))
+        with game_area.canvas.before:
+            Color(0.1, 0.1, 0.1, 1)
+            Rectangle(pos=game_area.pos, size=game_area.size)
+
+        tetris_game = TetrisGame(score_label, level_label)
+        game_area.add_widget(tetris_game)
+
+        root.add
