@@ -170,6 +170,8 @@ class TetrisGame(Widget):
                 for x, cell in enumerate(row):
                     if cell:
                         Color(0, 0, 1)
+                        Rectangle(pos=(offset_x + x * GRID_SIZE, offset_y - y * GRID_SIZE),
+                                  size=(GRID_SIZE, GRID_SIZE))
 
 
 class TetrisApp(App):
