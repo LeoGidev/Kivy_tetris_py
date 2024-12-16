@@ -181,9 +181,11 @@ class TetrisGame(Widget):
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
 
-class TetrisApp(App):
-    def build(self):
-        root = FloatLayout()
+class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la clase App de Kivy.
+    def build(self):   # Sobrescribe el método build, que construye la interfaz de la aplicación.
+        
+        # Crea un contenedor principal de tipo FloatLayout.
+        root = FloatLayout() 
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
         score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
         level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
