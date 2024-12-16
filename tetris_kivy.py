@@ -208,7 +208,13 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         # Crea un área de juego principal usando un Widget.
         # - `size_hint=(0.7, 1)` hace que ocupe el 70% del ancho y el 100% del alto.
         # - `pos_hint={"x": 0}` lo posiciona en el lado izquierdo.
-        game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})   
+        game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})  
+
+        # Crea una instancia del juego Tetris y pasa las etiquetas de puntuación y nivel.
+        tetris_game = TetrisGame(score_label, level_label)  
+
+        # Añade el widget del juego Tetris al área de juego.
+        game_area.add_widget(tetris_game)
 
         game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})
         tetris_game = TetrisGame(score_label, level_label)
