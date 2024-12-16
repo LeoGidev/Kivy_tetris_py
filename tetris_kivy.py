@@ -192,6 +192,7 @@ class TetrisApp(App):
 
         game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})
         tetris_game = TetrisGame(score_label, level_label)
+        game_area.add_widget(tetris_game)
 
         def update_rect(instance, value):
             rect.pos = instance.pos
