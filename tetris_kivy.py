@@ -198,7 +198,7 @@ class TetrisApp(App):
         root.add_widget(info_panel)
         return root
 
-        return root
+        
 
 
 if __name__ == '__main__':
