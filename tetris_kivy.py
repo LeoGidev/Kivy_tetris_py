@@ -183,10 +183,8 @@ class TetrisGame(Widget):
 
 class TetrisApp(App):
     def build(self):
-        root = FloatLayout()  # Usamos FloatLayout para permitir posicionamiento flexible
-
+        root = FloatLayout()
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
-
         # Fondo gris oscuro para el info_panel
         with info_panel.canvas.before:
             Color(0.1, 0.1, 0.1, 1)  # Fondo gris oscuro
