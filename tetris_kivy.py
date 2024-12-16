@@ -191,6 +191,16 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         # - `size_hint=(0.3, 1)` indica que ocupará el 30% del ancho y el 100% del alto.
         # - `pos_hint={"right": 1}` lo posiciona en el lado derecho.
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})  
+        with info_panel.canvas.before:
+            Color(0.1, 0.1, 0.1, 1)  # Fondo gris oscuro
+            rect = Rectangle()
+
+        # Vincular dinámicamente las propiedades del rectángulo con las del info_panel
+        def update_rect(instance, value):
+            rect.pos = instance.pos
+            rect.size = instance.size
+
+        info_panel.bind(pos=update_rect, size=update_rect)
 
         # Crea una etiqueta para mostrar la puntuación inicial del juego.
         # - `text="Score: 0"` define el texto inicial.
