@@ -197,8 +197,10 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         # - `font_size=20` ajusta el tamaño de la fuente.
         # - `color=(1, 1, 0, 1)` establece el color del texto (amarillo en formato RGBA).
         score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))  
-        level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
-        info_panel.add_widget(score_label)
+        
+        # Crea una etiqueta para mostrar el nivel inicial del juego, con las mismas propiedades visuales.
+        level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))  
+
         info_panel.add_widget(level_label)
 
         game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})
