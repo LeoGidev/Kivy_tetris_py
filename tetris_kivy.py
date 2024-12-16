@@ -190,8 +190,8 @@ class TetrisApp(App):
         info_panel.add_widget(score_label)
         info_panel.add_widget(level_label)
 
+        game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})
 
-        # Vincular dinámicamente las propiedades del rectángulo con las del info_panel
         def update_rect(instance, value):
             rect.pos = instance.pos
             rect.size = instance.size
