@@ -194,12 +194,7 @@ class TetrisApp(App):
         tetris_game = TetrisGame(score_label, level_label)
         game_area.add_widget(tetris_game)
 
-        def update_rect(instance, value):
-            rect.pos = instance.pos
-            rect.size = instance.size
-
-        info_panel.bind(pos=update_rect, size=update_rect)
-
+        root.add_widget(game_area)
 
 
         score_label = Label(text="Score: 0", font_size=20, size_hint=(1, 0.1), pos_hint={"right": 1})
