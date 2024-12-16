@@ -196,23 +196,7 @@ class TetrisApp(App):
 
         root.add_widget(game_area)
         root.add_widget(info_panel)
-
-
-        info_panel.add_widget(score_label)
-        info_panel.add_widget(level_label)
-
-        # Área del juego con fondo diferente
-        game_area = BoxLayout(size_hint=(0.7, 1))
-        #with game_area.canvas.before:
-        #    Color(0.1, 0.1, 0.1, 0)
-        #    Rectangle(pos=game_area.pos, size=game_area.size)
-
-        tetris_game = TetrisGame(score_label, level_label)
-        game_area.add_widget(tetris_game)
-
-        # Agregar paneles al diseño principal
-        root.add_widget(info_panel)
-        root.add_widget(game_area)
+        return root
 
         return root
 
