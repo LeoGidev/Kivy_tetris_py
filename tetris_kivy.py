@@ -187,6 +187,9 @@ class TetrisApp(App):
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
         score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
         level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
+        info_panel.add_widget(score_label)
+        info_panel.add_widget(level_label)
+
 
         # Vincular dinámicamente las propiedades del rectángulo con las del info_panel
         def update_rect(instance, value):
