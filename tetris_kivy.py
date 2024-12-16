@@ -185,7 +185,11 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
     def build(self):   # Sobrescribe el método build, que construye la interfaz de la aplicación.
         
         # Crea un contenedor principal de tipo FloatLayout.
-        root = FloatLayout() 
+        root = FloatLayout()  
+        
+        # Crea un panel de información usando un BoxLayout con orientación vertical.
+        # - `size_hint=(0.3, 1)` indica que ocupará el 30% del ancho y el 100% del alto.
+        # - `pos_hint={"right": 1}` lo posiciona en el lado derecho.
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
         score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
         level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
