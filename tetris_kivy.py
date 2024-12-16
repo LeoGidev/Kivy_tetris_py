@@ -185,10 +185,9 @@ class TetrisApp(App):
     def build(self):
         root = FloatLayout()
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
-        # Fondo gris oscuro para el info_panel
-        with info_panel.canvas.before:
-            Color(0.1, 0.1, 0.1, 1)  # Fondo gris oscuro
-            rect = Rectangle()
+        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
+        Color(0.1, 0.1, 0.1, 1)  # Fondo gris oscuro
+        rect = Rectangle()
 
         # Vincular dinámicamente las propiedades del rectángulo con las del info_panel
         def update_rect(instance, value):
