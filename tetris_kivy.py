@@ -192,7 +192,11 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         # - `pos_hint={"right": 1}` lo posiciona en el lado derecho.
         info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})  
 
-        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
+        # Crea una etiqueta para mostrar la puntuación inicial del juego.
+        # - `text="Score: 0"` define el texto inicial.
+        # - `font_size=20` ajusta el tamaño de la fuente.
+        # - `color=(1, 1, 0, 1)` establece el color del texto (amarillo en formato RGBA).
+        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))  
         level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
         info_panel.add_widget(score_label)
         info_panel.add_widget(level_label)
