@@ -201,7 +201,9 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         # Crea una etiqueta para mostrar el nivel inicial del juego, con las mismas propiedades visuales.
         level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))  
 
-        info_panel.add_widget(level_label)
+        # Añade las etiquetas de puntuación y nivel al panel de información.
+        info_panel.add_widget(score_label)  
+        info_panel.add_widget(level_label)  
 
         game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})
         tetris_game = TetrisGame(score_label, level_label)
