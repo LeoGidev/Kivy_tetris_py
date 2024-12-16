@@ -217,11 +217,12 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         game_area.add_widget(tetris_game)  
 
         # Añade el área de juego y el panel de información al contenedor principal (root).
-        root.add_widget(game_area) 
+        root.add_widget(game_area)  
+        root.add_widget(info_panel)  
 
-        root.add_widget(game_area)
-        root.add_widget(info_panel)
-        return root
+        # Retorna el contenedor principal como la raíz de la interfaz de usuario.
+        return root  
+
 
         
 
