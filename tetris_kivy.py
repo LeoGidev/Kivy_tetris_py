@@ -6,7 +6,7 @@ from kivy.core.window import Window
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 import random
-from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.floatlayout import FloatLayout 
 
 # Configuración del tablero
 GRID_SIZE = 20  # Tamaño de cada celda
@@ -25,7 +25,7 @@ SHAPES = {
 }
 
 class TetrisGame(Widget):
-    def __init__(self, score_label, level_label, next_piece_label, **kwargs):
+    def __init__(self, score_label, level_label, **kwargs):
         super().__init__(**kwargs)
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
@@ -41,7 +41,6 @@ class TetrisGame(Widget):
         # Referencias a las etiquetas externas
         self.score_label = score_label
         self.level_label = level_label
-        self.next_piece_label = next_piece_label
 
         # Eventos de teclado
         Window.bind(on_key_down=self.on_key_down)
@@ -57,13 +56,10 @@ class TetrisGame(Widget):
         self.next_piece = random.choice(list(SHAPES.values()))
         self.current_pos = [0, 4]
 
-        # Actualiza la vista de la pieza siguiente
-        self.update_next_piece_display()
-
         if self.check_collision(self.current_piece, self.current_pos):
             self.game_over = True
             print("Game Over!")
-
+    
     def update_next_piece_display(self):
         """Actualiza la etiqueta con la representación de la siguiente pieza."""
         next_piece_text = "\n".join(
@@ -105,6 +101,7 @@ class TetrisGame(Widget):
         if cleared > 0:
             self.score += (cleared ** 2) * 100  # Incrementar puntuación según las líneas eliminadas
             self.score_label.text = f"Score: {self.score}"
+            print(f"Líneas eliminadas: {self.lines_cleared}, Score: {self.score}")
             self.update_level()
 
     def update_level(self):
@@ -112,15 +109,53 @@ class TetrisGame(Widget):
         new_level = self.lines_cleared // 10 + 1  # Subir nivel cada 10 líneas
         if new_level > self.level:
             self.level = new_level
-            self.speed = max(0.1, self.speed - 0.05)  # Reducir velocidad
+            self.speed = max(0.1, self.speed - 0.05)  # Reducir velocidad (límites)
             Clock.unschedule(self.update)
             Clock.schedule_interval(self.update, self.speed)
             self.level_label.text = f"Level: {self.level}"
+            print(f"Nivel: {self.level}, Velocidad: {self.speed:.2f}s")
+
+    def move_piece(self, dx, dy):
+        """Mueve la pieza actual"""
+        new_pos = [self.current_pos[0] + dy, self.current_pos[1] + dx]
+        if not self.check_collision(self.current_piece, new_pos):
+            self.current_pos = new_pos
+
+    def rotate_piece(self):
+        """Rota la pieza actual"""
+        new_piece = [list(row) for row in zip(*self.current_piece[::-1])]
+        if not self.check_collision(new_piece, self.current_pos):
+            self.current_piece = new_piece
+
+    def on_key_down(self, window, key, scancode, codepoint, modifiers):
+        if key == 276:  # Flecha izquierda
+            self.move_left()
+        elif key == 275:  # Flecha derecha
+            self.move_right()
+        elif key == 273:  # Flecha arriba
+            self.rotate()
+        elif key == 274:  # Flecha abajo
+            self.move_down()
+
+    def move_left(self):
+        """Mueve la pieza a la izquierda."""
+        self.move_piece(-1, 0)
+
+    def move_right(self):
+        """Mueve la pieza a la derecha."""
+        self.move_piece(1, 0)
+
+    def move_down(self):
+        """Mueve la pieza hacia abajo más rápido."""
+        self.move_piece(0, 1)
+
+    def rotate(self):
+        """Rota la pieza actual."""
+        self.rotate_piece()
 
     def update(self, dt):
         """Actualización periódica del juego"""
         if self.game_over:
-            self.show_game_over()
             return
         if not self.check_collision(self.current_piece, [self.current_pos[0] + 1, self.current_pos[1]]):
             self.current_pos[0] += 1
@@ -129,18 +164,20 @@ class TetrisGame(Widget):
         self.draw_board()
 
     def draw_board(self):
-        """Dibuja el tablero y la pieza actual"""
+        """Dibuja el tablero, la pieza actual y la siguiente pieza"""
         self.canvas.clear()
         with self.canvas:
+            # Fondo del área del juego
             Color(0.1, 0.1, 0.1)
             Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
 
-            # Dibuja las piezas fijas
+            # Dibuja las piezas fijas en el tablero
             for y, row in enumerate(self.board):
                 for x, cell in enumerate(row):
                     if cell:
                         Color(0, 1, 0)
-                        Rectangle(pos=(x * GRID_SIZE, (BOARD_HEIGHT - y - 1) * GRID_SIZE), size=(GRID_SIZE, GRID_SIZE))
+                        Rectangle(pos=(x * GRID_SIZE, (BOARD_HEIGHT - y - 1) * GRID_SIZE),
+                                  size=(GRID_SIZE, GRID_SIZE))
 
             # Dibuja la pieza actual
             for y, row in enumerate(self.current_piece):
@@ -150,7 +187,7 @@ class TetrisGame(Widget):
                         Rectangle(pos=((self.current_pos[1] + x) * GRID_SIZE,
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
-
+    
     def show_game_over(self):
         """Muestra el texto de Game Over"""
         self.canvas.clear()
@@ -160,23 +197,62 @@ class TetrisGame(Widget):
         self.add_widget(Label(text="GAME OVER", font_size=48, color=(1, 1, 1, 1), pos=Window.center))
 
 
-class TetrisApp(App):
-    def build(self):
-        root = FloatLayout()
-        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
 
-        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
-        level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
-        next_piece_label = Label(text="Next:", font_size=20, color=(1, 1, 0, 1))
+class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la clase App de Kivy.
+    def build(self):   # Sobrescribe el método build, que construye la interfaz de la aplicación.
+        
+        # Crea un contenedor principal de tipo FloatLayout.
+        root = FloatLayout()  
+        
+        # Crea un panel de información usando un BoxLayout con orientación vertical.
+        # - `size_hint=(0.3, 1)` indica que ocupará el 30% del ancho y el 100% del alto.
+        # - `pos_hint={"right": 1}` lo posiciona en el lado derecho.
+        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})  
+        with info_panel.canvas.before:
+            Color(0.1, 0.1, 0.1, 1)  # Fondo gris oscuro
+            rect = Rectangle()
 
-        info_panel.add_widget(score_label)
-        info_panel.add_widget(level_label)
-        info_panel.add_widget(next_piece_label)
+        # Vincular dinámicamente las propiedades del rectángulo con las del info_panel
+        def update_rect(instance, value):
+            rect.pos = instance.pos
+            rect.size = instance.size
 
-        game = TetrisGame(score_label, level_label, next_piece_label)
-        root.add_widget(game)
-        root.add_widget(info_panel)
-        return root
+        info_panel.bind(pos=update_rect, size=update_rect)
 
-if __name__ == "__main__":
+        # Crea una etiqueta para mostrar la puntuación inicial del juego.
+        # - `text="Score: 0"` define el texto inicial.
+        # - `font_size=20` ajusta el tamaño de la fuente.
+        # - `color=(1, 1, 0, 1)` establece el color del texto (amarillo en formato RGBA).
+        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))  
+        
+        # Crea una etiqueta para mostrar el nivel inicial del juego, con las mismas propiedades visuales.
+        level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))  
+
+        # Añade las etiquetas de puntuación y nivel al panel de información.
+        info_panel.add_widget(score_label)  
+        info_panel.add_widget(level_label)  
+
+        # Crea un área de juego principal usando un Widget.
+        # - `size_hint=(0.7, 1)` hace que ocupe el 70% del ancho y el 100% del alto.
+        # - `pos_hint={"x": 0}` lo posiciona en el lado izquierdo.
+        game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})  
+
+        # Crea una instancia del juego Tetris y pasa las etiquetas de puntuación y nivel.
+        tetris_game = TetrisGame(score_label, level_label)  
+
+        # Añade el widget del juego Tetris al área de juego.
+        game_area.add_widget(tetris_game)  
+
+        # Añade el área de juego y el panel de información al contenedor principal (root).
+        root.add_widget(game_area)  
+        root.add_widget(info_panel)  
+
+        # Retorna el contenedor principal como la raíz de la interfaz de usuario.
+        return root  
+
+
+        
+
+
+if __name__ == '__main__':
     TetrisApp().run()
