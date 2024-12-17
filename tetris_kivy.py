@@ -181,7 +181,9 @@ class TetrisGame(Widget):
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
     def show_game_over(self):
-        
+        """Muestra el texto de Game Over"""
+        self.canvas.clear()
+
 class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la clase App de Kivy.
     def build(self):   # Sobrescribe el método build, que construye la interfaz de la aplicación.
         
