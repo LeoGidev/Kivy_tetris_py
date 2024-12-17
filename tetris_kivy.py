@@ -25,7 +25,7 @@ SHAPES = {
 }
 
 class TetrisGame(Widget):
-    def __init__(self, score_label, level_label, **kwargs):
+    def __init__(self, score_label, level_label, next_piece_label, **kwargs):
         super().__init__(**kwargs)
         self.board = [[0 for _ in range(BOARD_WIDTH)] for _ in range(BOARD_HEIGHT)]
         self.current_piece = None
@@ -41,7 +41,7 @@ class TetrisGame(Widget):
         # Referencias a las etiquetas externas
         self.score_label = score_label
         self.level_label = level_label
-        self.next_piece_label = next_piece_label  # Guarda la etiqueta
+        self.next_piece_label = next_piece_label  # Ahora se acepta correctamente
 
         # Eventos de teclado
         Window.bind(on_key_down=self.on_key_down)
@@ -50,6 +50,7 @@ class TetrisGame(Widget):
         Clock.schedule_interval(self.update, self.speed)
 
         self.start_new_piece()
+
 
     def start_new_piece(self):
         """Generar una nueva pieza"""
