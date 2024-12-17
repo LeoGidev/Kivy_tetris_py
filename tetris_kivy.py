@@ -236,6 +236,11 @@ class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la cla
         info_panel.add_widget(score_label)  
         info_panel.add_widget(level_label)  
 
+        # Crea una etiqueta para mostrar la siguiente pieza
+        next_piece_label = Label(text="Next:\n", font_size=20, color=(1, 1, 0, 1), halign="left", valign="middle")
+        next_piece_label.text_size = next_piece_label.size  # Ajuste para el alineado
+
+
         # Crea un área de juego principal usando un Widget.
         # - `size_hint=(0.7, 1)` hace que ocupe el 70% del ancho y el 100% del alto.
         # - `pos_hint={"x": 0}` lo posiciona en el lado izquierdo.
