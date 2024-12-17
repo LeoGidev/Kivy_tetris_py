@@ -185,6 +185,7 @@ class TetrisGame(Widget):
         self.canvas.clear()
         with self.canvas:
             Color(1, 0, 0, 1)  # Color rojo
+            Rectangle(pos=(0, 0), size=Window.size)
 
 class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la clase App de Kivy.
     def build(self):   # Sobrescribe el método build, que construye la interfaz de la aplicación.
