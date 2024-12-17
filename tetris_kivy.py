@@ -202,62 +202,41 @@ class TetrisGame(Widget):
 
 
 
-class TetrisApp(App):  # Define una clase llamada TetrisApp que hereda de la clase App de Kivy.
-    def build(self):   # Sobrescribe el método build, que construye la interfaz de la aplicación.
+class TetrisApp(App):
+    def build(self):
+        root = FloatLayout()
         
-        # Crea un contenedor principal de tipo FloatLayout.
-        root = FloatLayout()  
-        
-        # Crea un panel de información usando un BoxLayout con orientación vertical.
-        # - `size_hint=(0.3, 1)` indica que ocupará el 30% del ancho y el 100% del alto.
-        # - `pos_hint={"right": 1}` lo posiciona en el lado derecho.
-        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})  
+        info_panel = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
         with info_panel.canvas.before:
-            Color(0.1, 0.1, 0.1, 1)  # Fondo gris oscuro
+            Color(0.1, 0.1, 0.1, 1)
             rect = Rectangle()
 
-        # Vincular dinámicamente las propiedades del rectángulo con las del info_panel
         def update_rect(instance, value):
             rect.pos = instance.pos
             rect.size = instance.size
 
         info_panel.bind(pos=update_rect, size=update_rect)
 
-        # Crea una etiqueta para mostrar la puntuación inicial del juego.
-        # - `text="Score: 0"` define el texto inicial.
-        # - `font_size=20` ajusta el tamaño de la fuente.
-        # - `color=(1, 1, 0, 1)` establece el color del texto (amarillo en formato RGBA).
-        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))  
-        
-        # Crea una etiqueta para mostrar el nivel inicial del juego, con las mismas propiedades visuales.
-        level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))  
-
-        # Añade las etiquetas de puntuación y nivel al panel de información.
-        info_panel.add_widget(score_label)  
-        info_panel.add_widget(level_label)  
-
-        # Crea una etiqueta para mostrar la siguiente pieza
+        score_label = Label(text="Score: 0", font_size=20, color=(1, 1, 0, 1))
+        level_label = Label(text="Level: 1", font_size=20, color=(1, 1, 0, 1))
         next_piece_label = Label(text="Next:\n", font_size=20, color=(1, 1, 0, 1), halign="left", valign="middle")
-        next_piece_label.text_size = next_piece_label.size  # Ajuste para el alineado
+        next_piece_label.text_size = next_piece_label.size
 
+        info_panel.add_widget(score_label)
+        info_panel.add_widget(level_label)
+        info_panel.add_widget(next_piece_label)  # Añade la etiqueta al panel de información
 
-        # Crea un área de juego principal usando un Widget.
-        # - `size_hint=(0.7, 1)` hace que ocupe el 70% del ancho y el 100% del alto.
-        # - `pos_hint={"x": 0}` lo posiciona en el lado izquierdo.
-        game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})  
+        game_area = Widget(size_hint=(0.7, 1), pos_hint={"x": 0})
 
-        # Crea una instancia del juego Tetris y pasa las etiquetas de puntuación y nivel.
-        tetris_game = TetrisGame(score_label, level_label)  
+        tetris_game = TetrisGame(score_label, level_label, next_piece_label)  # Pasa la etiqueta
 
-        # Añade el widget del juego Tetris al área de juego.
-        game_area.add_widget(tetris_game)  
+        game_area.add_widget(tetris_game)
 
-        # Añade el área de juego y el panel de información al contenedor principal (root).
-        root.add_widget(game_area)  
-        root.add_widget(info_panel)  
+        root.add_widget(game_area)
+        root.add_widget(info_panel)
 
-        # Retorna el contenedor principal como la raíz de la interfaz de usuario.
-        return root  
+        return root
+
 
 
         
