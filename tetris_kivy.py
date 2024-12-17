@@ -156,6 +156,7 @@ class TetrisGame(Widget):
     def update(self, dt):
         """Actualización periódica del juego"""
         if self.game_over:
+            self.show_game_over()
             return
         if not self.check_collision(self.current_piece, [self.current_pos[0] + 1, self.current_pos[1]]):
             self.current_pos[0] += 1
