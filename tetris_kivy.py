@@ -61,6 +61,8 @@ class TetrisGame(Widget):
             print("Game Over!")
     
     def update_next_piece_display(self):
+        """Actualiza la etiqueta con la representación de la siguiente pieza."""
+        next_piece_text = "\n".join(
 
     def check_collision(self, piece, pos):
         """Verifica si una pieza colisiona con los bordes o con otras piezas"""
