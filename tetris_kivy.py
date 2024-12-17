@@ -63,7 +63,8 @@ class TetrisGame(Widget):
     def update_next_piece_display(self):
         """Actualiza la etiqueta con la representación de la siguiente pieza."""
         next_piece_text = "\n".join(
-
+            "".join("[]" if cell else "  " for cell in row) for row in self.next_piece
+        )
     def check_collision(self, piece, pos):
         """Verifica si una pieza colisiona con los bordes o con otras piezas"""
         for y, row in enumerate(piece):
