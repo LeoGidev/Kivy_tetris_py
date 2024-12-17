@@ -41,6 +41,7 @@ class TetrisGame(Widget):
         # Referencias a las etiquetas externas
         self.score_label = score_label
         self.level_label = level_label
+        self.next_piece_label = next_piece_label  # Guarda la etiqueta
 
         # Eventos de teclado
         Window.bind(on_key_down=self.on_key_down)
