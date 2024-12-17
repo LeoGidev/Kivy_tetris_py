@@ -187,6 +187,7 @@ class TetrisGame(Widget):
                         Rectangle(pos=((self.current_pos[1] + x) * GRID_SIZE,
                                        (BOARD_HEIGHT - self.current_pos[0] - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
+    
     def show_game_over(self):
         """Muestra el texto de Game Over"""
         self.canvas.clear()
