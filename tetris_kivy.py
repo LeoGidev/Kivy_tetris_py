@@ -55,6 +55,8 @@ class TetrisGame(Widget):
         self.current_piece = self.next_piece
         self.next_piece = random.choice(list(SHAPES.values()))
         self.current_pos = [0, 4]
+        # Actualiza la vista de la pieza siguiente
+        self.update_next_piece_display()
 
         if self.check_collision(self.current_piece, self.current_pos):
             self.game_over = True
