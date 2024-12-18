@@ -176,7 +176,8 @@ class TetrisGame(Widget):
         self.canvas.clear()
         with self.canvas:
             # Fondo del área del juego
-            Color(0.1, 0.1, 0.1)
+            Color(0.5, 0.8, 0.1)
+            #Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
             Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
 
             # Dibuja las piezas fijas en el tablero
