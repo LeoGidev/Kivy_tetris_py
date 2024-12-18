@@ -232,8 +232,8 @@ class TetrisApp(App):
 
         game_area = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
         with game_area.canvas.before:
-            Color(0.1, 0.1, 0.1, 1)
-            rect = Rectangle()
+            Color(1, 0, 0, 1)  # Color rojo
+            Rectangle(pos=(0, 0), size=Window.size)
 
 
     
