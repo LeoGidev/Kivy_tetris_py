@@ -230,7 +230,7 @@ class TetrisApp(App):
         info_panel.add_widget(level_label)
         info_panel.add_widget(next_piece_label)  # Añade la etiqueta al panel de información
 
-        game_area = BoxLayout()
+        game_area = Widget(size_hint=(1, 0.2), pos_hint={"x": 0})
 
         tetris_game = TetrisGame(score_label, level_label, next_piece_label)  # Pasa la etiqueta
 
