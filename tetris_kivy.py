@@ -231,7 +231,7 @@ class TetrisApp(App):
         info_panel.add_widget(next_piece_label)  # Añade la etiqueta al panel de información
 
         # Área de juego
-        game_area = FloatLayout(size_hint=(0.7, 1), pos_hint={"left": 1})  # Ahora respetará size_hint y pos_hint
+        game_area = FloatLayout(size_hint=(1, 1), pos_hint={"left": 1})  # Ahora respetará size_hint y pos_hint
         with game_area.canvas.before:
             Color(0.2, 0.2, 0.2, 1)
             game_bg = Rectangle()
