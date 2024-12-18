@@ -231,10 +231,10 @@ class TetrisApp(App):
         info_panel.add_widget(level_label)
         info_panel.add_widget(next_piece_label)  # Añade la etiqueta al panel de información
 
-        game_area = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
+        game_area = BoxLayout()
         with game_area.canvas.before:
             Color(1, 0, 0, 1)  # Color rojo
-            Rectangle(pos=(0, 0), size=Window.size)
+            Rectangle(pos=(0, 0), size=(Window.size))
 
 
     
