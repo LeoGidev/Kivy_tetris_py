@@ -178,7 +178,7 @@ class TetrisGame(Widget):
             # Fondo del área del juego
             Color(0.5, 0.8, 0.1)
             #Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
-            Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
+            Rectangle(pos=(0, 0), size=(Window.size))
 
             # Dibuja las piezas fijas en el tablero
             for y, row in enumerate(self.board):
