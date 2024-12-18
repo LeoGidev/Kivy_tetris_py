@@ -230,16 +230,13 @@ class TetrisApp(App):
         info_panel.add_widget(level_label)
         info_panel.add_widget(next_piece_label)  # Añade la etiqueta al panel de información
 
-        # Área de juego
-        game_area = FloatLayout()  # Ahora respetará size_hint y pos_hint
+        game_area = BoxLayout(orientation='vertical', size_hint=(0.3, 1), pos_hint={"right": 1})
         with game_area.canvas.before:
-            Color(0.2, 0.2, 0.2, 1)
-            game_bg = Rectangle(pos=(0, 0), size=Window.size)
-        def update_game_bg(instance, value):
-            game_bg.pos = instance.pos
-            game_bg.size = instance.size
+            Color(0.1, 0.1, 0.1, 1)
+            rect = Rectangle()
 
-        game_area.bind(pos=update_game_bg, size=update_game_bg)
+
+    
 
         tetris_game = TetrisGame(score_label, level_label, next_piece_label)  # Pasa la etiqueta
 
