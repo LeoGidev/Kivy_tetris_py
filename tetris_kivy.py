@@ -13,7 +13,7 @@ Window.size = (600, 800)  # Define el tamaño de la ventana principal
 
 # Configuración del tablero
 GRID_SIZE = 20  # Tamaño de cada celda
-BOARD_WIDTH = Window.size[0]
+BOARD_WIDTH = Window.size[0]*0.7
 BOARD_HEIGHT = Window.size[1]
 
 # Formas de las piezas (Tetrominós)
@@ -176,7 +176,7 @@ class TetrisGame(Widget):
         self.canvas.clear()
         with self.canvas:
             # Fondo del área del juego
-            Color(0.3, 0.2, 0.2)
+            Color(0.1, 0.2, 0.2)
             Rectangle(pos=(0, 0), size=(BOARD_WIDTH * GRID_SIZE, BOARD_HEIGHT * GRID_SIZE))
             #Rectangle(pos=(0, 0), size=(Window.size))
 
