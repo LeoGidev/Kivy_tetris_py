@@ -13,7 +13,7 @@ Window.size = (600, 800)  # Define el tamaño de la ventana principal
 
 # Configuración del tablero
 GRID_SIZE = 20  # Tamaño de cada celda
-BOARD_WIDTH = Window.size[0]*0.7
+BOARD_WIDTH = Window.size[0]
 BOARD_HEIGHT = Window.size[1]
 
 # Formas de las piezas (Tetrominós)
