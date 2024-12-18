@@ -234,7 +234,7 @@ class TetrisApp(App):
         game_area = FloatLayout()  # Ahora respetará size_hint y pos_hint
         with game_area.canvas.before:
             Color(0.2, 0.2, 0.2, 1)
-            game_bg = Rectangle()
+            game_bg = Rectangle(pos=(0, 0), size=Window.size)
         def update_game_bg(instance, value):
             game_bg.pos = instance.pos
             game_bg.size = instance.size
