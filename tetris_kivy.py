@@ -16,9 +16,12 @@ Window.size = (600, 800)  # Define el tamaño de la ventana principal
 
 
 #BOARD_WIDTH = Window.size[0]
-BOARD_WIDTH = 10
+#BOARD_WIDTH = 10
 #BOARD_HEIGHT = Window.size[1]
-BOARD_HEIGHT = 20
+#BOARD_HEIGHT = 20
+# Calcula BOARD_WIDTH y BOARD_HEIGHT dinámicamente
+BOARD_WIDTH = Window.size[0] // GRID_SIZE
+BOARD_HEIGHT = Window.size[1] // GRID_SIZE
 GRID_SIZE = min(Window.size[0] // BOARD_WIDTH, Window.size[1] // BOARD_HEIGHT)
 
 # Formas de las piezas (Tetrominós)
