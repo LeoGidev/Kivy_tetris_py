@@ -13,12 +13,13 @@ Window.size = (600, 800)  # Define el tamaño de la ventana principal
 
 # Configuración del tablero
 #GRID_SIZE = 10  # Tamaño de cada celda
-GRID_SIZE = min(Window.size[0] // BOARD_WIDTH, Window.size[1] // BOARD_HEIGHT)
+
 
 #BOARD_WIDTH = Window.size[0]
 BOARD_WIDTH = 10
 #BOARD_HEIGHT = Window.size[1]
 BOARD_HEIGHT = 20
+GRID_SIZE = min(Window.size[0] // BOARD_WIDTH, Window.size[1] // BOARD_HEIGHT)
 
 # Formas de las piezas (Tetrominós)
 SHAPES = {
