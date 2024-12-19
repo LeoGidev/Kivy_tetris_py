@@ -12,7 +12,7 @@ from kivy.core.window import Window
 Window.size = (600, 800)  # Define el tamaño de la ventana principal
 
 # Configuración del tablero
-#GRID_SIZE = 10  # Tamaño de cada celda
+GRID_SIZE = 10  # Tamaño de cada celda
 
 
 #BOARD_WIDTH = Window.size[0]
@@ -22,7 +22,7 @@ Window.size = (600, 800)  # Define el tamaño de la ventana principal
 # Calcula BOARD_WIDTH y BOARD_HEIGHT dinámicamente
 BOARD_WIDTH = Window.size[0] // GRID_SIZE
 BOARD_HEIGHT = Window.size[1] // GRID_SIZE
-GRID_SIZE = min(Window.size[0] // BOARD_WIDTH, Window.size[1] // BOARD_HEIGHT)
+#GRID_SIZE = min(Window.size[0] // BOARD_WIDTH, Window.size[1] // BOARD_HEIGHT)
 
 # Formas de las piezas (Tetrominós)
 SHAPES = {
