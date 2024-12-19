@@ -12,7 +12,7 @@ from kivy.core.window import Window
 Window.size = (600, 800)  # Define el tamaño de la ventana principal
 
 # Configuración del tablero
-GRID_SIZE = 100  # Tamaño de cada celda
+GRID_SIZE = 10  # Tamaño de cada celda
 #BOARD_WIDTH = Window.size[0]
 BOARD_WIDTH = 10
 #BOARD_HEIGHT = Window.size[1]
