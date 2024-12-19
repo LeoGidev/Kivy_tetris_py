@@ -186,7 +186,7 @@ class TetrisGame(Widget):
             for y, row in enumerate(self.board):
                 for x, cell in enumerate(row):
                     if cell:
-                        Color(0, 1, 0)
+                        Color(0, 1, 1)
                         Rectangle(pos=(x * GRID_SIZE, (BOARD_HEIGHT - y - 1) * GRID_SIZE),
                                   size=(GRID_SIZE, GRID_SIZE))
 
